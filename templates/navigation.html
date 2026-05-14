@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero Command | Navigation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/navigation.css">
+</head>
+<body class="nav-page" data-mode="normal">
+    <div id="navMap" aria-label="Live drone navigation map"></div>
+
+    <header class="nav-topbar panel">
+        <div class="brand-wrap">
+            <div class="brand-badge">NV</div>
+            <div>
+                <h1 class="brand-title">Mission Navigation</h1>
+                <p class="brand-subtitle">Real-time drone route tracking and guidance</p>
+            </div>
+        </div>
+        <div class="status-strip">
+            <span id="navNow" class="chip chip-time">--</span>
+            <span id="navConnection" class="chip disconnected">Connecting...</span>
+            <a class="chip chip-mode rescue-link" href="/">Back To Dashboard</a>
+        </div>
+    </header>
+
+    <section class="nav-panel panel">
+        <div class="panel-header">
+            <h2>Route Control</h2>
+            <button id="recenterBtn" class="btn btn-outline" type="button">Recenter</button>
+        </div>
+
+        <div class="form-grid">
+            <label>Target Latitude
+                <input id="targetLatInput" placeholder="3.1402000" />
+            </label>
+            <label>Target Longitude
+                <input id="targetLonInput" placeholder="101.6892000" />
+            </label>
+        </div>
+
+        <div class="action-row nav-actions">
+            <button id="generatePlanBtn" class="btn btn-primary" type="button">Generate Route</button>
+            <button id="clearPlanBtn" class="btn btn-outline" type="button">Clear Route</button>
+        </div>
+
+        <div class="action-row nav-actions">
+            <button id="mapModeBtn" class="btn btn-outline" type="button">Satellite</button>
+            <button id="autoCenterBtn" class="btn btn-outline" type="button">Auto-Center ON</button>
+        </div>
+
+        <label>Zoom
+            <input id="zoomRange" type="range" min="3" max="20" step="0.1" value="16" />
+        </label>
+
+        <div class="map-legend">
+            <span><i class="dot dot-planned"></i> Planned route</span>
+            <span><i class="dot dot-actual"></i> Actual path</span>
+            <span><i class="dot dot-target"></i> Target</span>
+        </div>
+    </section>
+
+    <section class="nav-hud">
+        <article class="hud-card">
+            <span>Speed</span>
+            <strong id="navSpeed">-</strong>
+        </article>
+        <article class="hud-card">
+            <span>Heading</span>
+            <strong id="navHeading">-</strong>
+        </article>
+        <article class="hud-card">
+            <span>Distance Remaining</span>
+            <strong id="navDistance">-</strong>
+        </article>
+        <article class="hud-card">
+            <span>ETA</span>
+            <strong id="navEta">-</strong>
+        </article>
+        <article class="hud-card">
+            <span>Mission Progress</span>
+            <strong id="navProgress">-</strong>
+        </article>
+        <article class="hud-card">
+            <span>GPS Status</span>
+            <strong id="navGpsStatus">-</strong>
+        </article>
+        <article class="hud-card">
+            <span>Satellites</span>
+            <strong id="navSats">-</strong>
+        </article>
+        <article class="hud-card">
+            <span>Source</span>
+            <strong id="navSource">-</strong>
+        </article>
+    </section>
+
+    <div id="navToast" class="toast nav-toast">Ready</div>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="/config.js"></script>
+    <script src="/static/api-client.js"></script>
+    <script src="/static/navigation.js" defer></script>
+</body>
+</html>

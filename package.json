@@ -1,0 +1,7 @@
+{
+  "name": "ground-control-frontend-pages",
+  "private": true,
+  "scripts": {
+    "build:pages": "node scripts/build-pages.mjs"
+  }
+}

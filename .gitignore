@@ -1,0 +1,32 @@
+# Backend - NEVER upload these
+app.py
+config.py
+download_visdrone.py
+jetson_gps_bridge.py
+process_mavlink.c
+victim_geo.py
+yolov8_detect.py
+weights.pt
+yolov8n.pt
+supabase_rescue_schema.sql
+
+# Large media files
+*.MP4
+*.mp4
+*.avi
+
+# Unnecessary files
+calc.docx
+.vscode/
+__pycache__/
+*.pyc
+.env
+*.pt
+
+# Backup folders
+Backuo code 19.1/
+Ballon Drone Footage/
+
+# Build output
+dist/
+node_modules/

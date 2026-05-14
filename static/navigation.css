@@ -1,0 +1,190 @@
+body.nav-page {
+    padding: 0;
+    overflow: hidden;
+    background: #091422;
+}
+
+.nav-page .page-glow {
+    display: none;
+}
+
+#navMap {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+}
+
+.leaflet-container {
+    background: #091422;
+}
+
+.nav-topbar {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    z-index: 20;
+    padding: 12px 14px;
+    background: rgba(10, 22, 36, 0.78);
+}
+
+.nav-panel {
+    position: fixed;
+    top: 98px;
+    right: 14px;
+    width: 340px;
+    z-index: 20;
+    background: rgba(8, 18, 30, 0.8);
+}
+
+.nav-panel .form-grid {
+    margin-bottom: 8px;
+}
+
+.nav-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 8px;
+}
+
+.map-legend {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.78rem;
+    color: #c0dced;
+}
+
+.dot-planned {
+    background: #ffd166;
+}
+
+.dot-actual {
+    background: #3ee9d6;
+}
+
+.dot-target {
+    background: #ff4d5d;
+}
+
+.nav-hud {
+    position: fixed;
+    left: 14px;
+    right: 372px;
+    bottom: 14px;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.hud-card {
+    border: 1px solid rgba(130, 182, 224, 0.28);
+    border-radius: 10px;
+    background: rgba(7, 19, 32, 0.82);
+    backdrop-filter: blur(7px);
+    padding: 8px 10px;
+}
+
+.hud-card span {
+    display: block;
+    font-size: 0.72rem;
+    color: #9ec4df;
+}
+
+.hud-card strong {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.95rem;
+    color: #e7f6ff;
+}
+
+.nav-toast {
+    z-index: 30;
+}
+
+.drone-marker,
+.start-marker,
+.target-marker {
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 2px solid rgba(4, 18, 32, 0.95);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.14);
+}
+
+.drone-marker {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 30% 30%, #8bffed, #27d5c3 70%);
+    transition: transform 0.85s linear;
+}
+
+.drone-marker-arrow {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 14px solid #083745;
+    transform-origin: center 70%;
+    transition: transform 0.2s ease;
+}
+
+.start-marker {
+    width: 20px;
+    height: 20px;
+    background: #9be564;
+    color: #0f2f10;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.target-marker {
+    width: 20px;
+    height: 20px;
+    background: #ff6b7a;
+    color: #411017;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.leaflet-drone-icon,
+.leaflet-start-icon,
+.leaflet-target-icon {
+    background: transparent;
+    border: 0;
+}
+
+@media (max-width: 1180px) {
+    .nav-panel {
+        width: 300px;
+    }
+
+    .nav-hud {
+        right: 322px;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-topbar {
+        position: static;
+        margin: 10px;
+    }
+
+    .nav-panel {
+        position: static;
+        width: calc(100% - 20px);
+        margin: 0 10px 10px;
+    }
+
+    .nav-hud {
+        position: static;
+        margin: 0 10px 10px;
+        right: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #navMap {
+        inset: 0;
+    }
+}

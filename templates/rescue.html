@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero Command | Rescue Coordination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body data-mode="normal">
+    <div class="page-glow"></div>
+
+    <header class="topbar">
+        <div class="brand-wrap">
+            <div class="brand-badge">RC</div>
+            <div>
+                <h1 class="brand-title">Rescue Coordination Dashboard</h1>
+                <p class="brand-subtitle">Multi-team collaborative emergency response</p>
+            </div>
+        </div>
+
+        <div class="status-strip">
+            <span id="rescueNow" class="chip chip-time">--</span>
+            <span id="rescueSync" class="chip disconnected">Syncing...</span>
+            <a class="chip chip-mode rescue-link" href="/">Back To Execute</a>
+        </div>
+    </header>
+
+    <main class="rescue-layout">
+        <section class="panel">
+            <div class="panel-header">
+                <h2>Shared Operational Map</h2>
+                <button class="btn btn-outline" id="refreshStateBtn" type="button">Refresh</button>
+            </div>
+            <div id="rescueMap" class="rescue-map"></div>
+            <div class="rescue-legend">
+                <span><i class="dot status-unassigned"></i> Unassigned</span>
+                <span><i class="dot status-assigned"></i> Assigned</span>
+                <span><i class="dot status-in_progress"></i> In Progress</span>
+                <span><i class="dot status-completed"></i> Completed</span>
+            </div>
+        </section>
+
+        <aside class="side-column">
+            <article class="panel">
+                <div class="panel-header">
+                    <h2>Team Console</h2>
+                </div>
+                <div class="form-grid">
+                    <label>Team ID
+                        <input id="teamIdInput" placeholder="team_a" />
+                    </label>
+                    <label>Team Name
+                        <input id="teamNameInput" placeholder="Team A" />
+                    </label>
+                    <label>Location Source
+                        <select id="locationSourceInput">
+                            <option value="auto">Auto (Browser -> Drone -> Manual)</option>
+                            <option value="browser">Browser GPS</option>
+                            <option value="drone">Drone GPS (/gps)</option>
+                            <option value="manual">Manual Coordinates</option>
+                        </select>
+                    </label>
+                    <label>Manual Latitude
+                        <input id="manualLatInput" placeholder="3.1390000" />
+                    </label>
+                    <label>Manual Longitude
+                        <input id="manualLonInput" placeholder="101.6869000" />
+                    </label>
+                </div>
+                <div class="action-row">
+                    <button class="btn btn-primary" id="pushLocationBtn" type="button">Push My Location</button>
+                    <button class="btn btn-outline" id="importLatestBtn" type="button">Import Latest Groups</button>
+                </div>
+                <div id="geoHint" class="hint">Tip: Browser GPS usually requires HTTPS or localhost.</div>
+                <div id="teamStatus" class="hint">Set your team details and push location to join operations.</div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <h2>Live Teams</h2>
+                </div>
+                <div id="teamList" class="rescue-list"></div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <h2>Victim Groups</h2>
+                </div>
+                <div id="groupList" class="rescue-list"></div>
+            </article>
+        </aside>
+    </main>
+
+    <div class="toast" id="rescueToast">Ready</div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="/config.js"></script>
+    <script src="/static/api-client.js"></script>
+    <script src="/static/rescue.js" defer></script>
+</body>
+</html>
